@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Runbook Agent MongoDB Database
 
 This directory contains the complete MongoDB database structure for the Runbook Following Agent application, including schemas, indexes, seed data, and validation rules.
@@ -418,3 +419,7 @@ This database structure is part of the Runbook Following Agent application.
   - Phase 1: Core Database (10 collections)
   - Phase 2: AI/RAG Database (4 collections)
   - Phase 3: Security (4 collections)
+=======
+# ResolveX-AI
+ResolveX AI is an enterprise AI-powered Runbook Automation Platform that uses RAG, AI Agents, and MCP to automate incident diagnosis, execute approved remediation steps, and generate intelligent incident reports, reducing Mean Time to Resolution (MTTR).
+>>>>>>> 62a8be1a7de355c7793f77ed12b97be92e49b50b
