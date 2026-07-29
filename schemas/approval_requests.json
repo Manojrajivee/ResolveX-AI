@@ -1,0 +1,95 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "ApprovalRequests",
+    "description": "For dangerous commands requiring user approval",
+    "required": [
+      "incidentId",
+      "stepId",
+      "command",
+      "requestedBy",
+      "status"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique approval request identifier"
+      },
+      "incidentId": {
+        "bsonType": "objectId",
+        "description": "Associated incident ID"
+      },
+      "stepId": {
+        "bsonType": "objectId",
+        "description": "Associated incident step ID"
+      },
+      "command": {
+        "bsonType": "string",
+        "description": "Command requiring approval",
+        "maxLength": 500
+      },
+      "description": {
+        "bsonType": "string",
+        "description": "Description of why command is needed",
+        "maxLength": 2000
+      },
+      "riskLevel": {
+        "bsonType": "string",
+        "description": "Command risk level",
+        "enum": [
+          "LOW",
+          "MEDIUM",
+          "HIGH",
+          "CRITICAL"
+        ]
+      },
+      "requestedBy": {
+        "bsonType": "objectId",
+        "description": "User ID or AI agent ID requesting approval"
+      },
+      "requestedByType": {
+        "bsonType": "string",
+        "description": "Requester type",
+        "enum": [
+          "USER",
+          "AI"
+        ]
+      },
+      "status": {
+        "bsonType": "string",
+        "description": "Approval status",
+        "enum": [
+          "PENDING",
+          "APPROVED",
+          "REJECTED",
+          "CANCELLED"
+        ]
+      },
+      "approvedBy": {
+        "bsonType": "objectId",
+        "description": "User ID who approved/rejected"
+      },
+      "approvedAt": {
+        "bsonType": "date",
+        "description": "Approval/rejection timestamp"
+      },
+      "approvalNotes": {
+        "bsonType": "string",
+        "description": "Notes from approver",
+        "maxLength": 1000
+      },
+      "expiresAt": {
+        "bsonType": "date",
+        "description": "Request expiration timestamp"
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Request creation timestamp"
+      },
+      "updatedAt": {
+        "bsonType": "date",
+        "description": "Last update timestamp"
+      }
+    }
+  }
+}

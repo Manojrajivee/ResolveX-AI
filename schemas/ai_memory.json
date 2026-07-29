@@ -1,0 +1,94 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "AIMemory",
+    "description": "Stores previous incidents, solutions, and AI learning context",
+    "required": [
+      "memoryType",
+      "content",
+      "createdAt"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique memory identifier"
+      },
+      "memoryType": {
+        "bsonType": "string",
+        "description": "Type of memory",
+        "enum": [
+          "INCIDENT_SOLUTION",
+          "PATTERN",
+          "KNOWLEDGE",
+          "CONTEXT"
+        ]
+      },
+      "incidentId": {
+        "bsonType": "objectId",
+        "description": "Reference to incident (if applicable)"
+      },
+      "runbookId": {
+        "bsonType": "objectId",
+        "description": "Reference to runbook (if applicable)"
+      },
+      "title": {
+        "bsonType": "string",
+        "description": "Memory title",
+        "maxLength": 200
+      },
+      "content": {
+        "bsonType": "string",
+        "description": "Memory content",
+        "minLength": 1,
+        "maxLength": 10000
+      },
+      "tags": {
+        "bsonType": "array",
+        "description": "Memory tags for retrieval",
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "embeddingId": {
+        "bsonType": "objectId",
+        "description": "Reference to embedding metadata"
+      },
+      "accessCount": {
+        "bsonType": "int",
+        "description": "Number of times this memory was accessed"
+      },
+      "successRate": {
+        "bsonType": "double",
+        "description": "Success rate of solutions (0.0 to 1.0)",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "metadata": {
+        "bsonType": "object",
+        "description": "Additional metadata",
+        "properties": {
+          "category": {
+            "bsonType": "string",
+            "description": "Memory category"
+          },
+          "severity": {
+            "bsonType": "string",
+            "description": "Associated severity level"
+          },
+          "resolutionTime": {
+            "bsonType": "long",
+            "description": "Resolution time in minutes"
+          }
+        }
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Memory creation timestamp"
+      },
+      "updatedAt": {
+        "bsonType": "date",
+        "description": "Last access/update timestamp"
+      }
+    }
+  }
+}

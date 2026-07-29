@@ -1,0 +1,56 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "RunbookVersions",
+    "description": "Track runbook changes and versions",
+    "required": [
+      "runbookId",
+      "version",
+      "uploadedBy"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique version identifier"
+      },
+      "runbookId": {
+        "bsonType": "objectId",
+        "description": "Parent runbook ID"
+      },
+      "version": {
+        "bsonType": "int",
+        "description": "Version number"
+      },
+      "versionName": {
+        "bsonType": "string",
+        "description": "Version name (e.g., Database Recovery v1.0)",
+        "maxLength": 100
+      },
+      "changeNotes": {
+        "bsonType": "string",
+        "description": "Notes about changes in this version",
+        "maxLength": 2000
+      },
+      "filePath": {
+        "bsonType": "string",
+        "description": "File storage path for this version"
+      },
+      "fileSize": {
+        "bsonType": "long",
+        "description": "File size in bytes"
+      },
+      "uploadedBy": {
+        "bsonType": "objectId",
+        "description": "User ID who uploaded this version"
+      },
+      "isCurrent": {
+        "bsonType": "bool",
+        "description": "Whether this is the current version"
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Version creation timestamp"
+      }
+    }
+  }
+}

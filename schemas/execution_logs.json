@@ -1,0 +1,86 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "ExecutionLogs",
+    "description": "Stores command execution logs",
+    "required": [
+      "incidentId",
+      "stepId",
+      "command",
+      "executedBy"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique execution log identifier"
+      },
+      "incidentId": {
+        "bsonType": "objectId",
+        "description": "Associated incident ID"
+      },
+      "stepId": {
+        "bsonType": "objectId",
+        "description": "Associated incident step ID"
+      },
+      "command": {
+        "bsonType": "string",
+        "description": "Executed command",
+        "maxLength": 500
+      },
+      "output": {
+        "bsonType": "string",
+        "description": "Command output",
+        "maxLength": 10000
+      },
+      "exitCode": {
+        "bsonType": "int",
+        "description": "Command exit code"
+      },
+      "status": {
+        "bsonType": "string",
+        "description": "Execution status",
+        "enum": [
+          "SUCCESS",
+          "FAILURE",
+          "TIMEOUT",
+          "CANCELLED"
+        ]
+      },
+      "executedBy": {
+        "bsonType": "objectId",
+        "description": "User ID who executed (or AI agent)"
+      },
+      "executionTime": {
+        "bsonType": "long",
+        "description": "Execution time in milliseconds"
+      },
+      "machineInfo": {
+        "bsonType": "object",
+        "description": "Machine information",
+        "properties": {
+          "hostname": {
+            "bsonType": "string",
+            "description": "Machine hostname"
+          },
+          "ipAddress": {
+            "bsonType": "string",
+            "description": "Machine IP address"
+          },
+          "os": {
+            "bsonType": "string",
+            "description": "Operating system"
+          }
+        }
+      },
+      "errorMessage": {
+        "bsonType": "string",
+        "description": "Error message if failed",
+        "maxLength": 2000
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Execution timestamp"
+      }
+    }
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "AuditLogs",
+    "description": "Very important - stores all critical security and system events",
+    "required": [
+      "userId",
+      "action",
+      "entityType",
+      "timestamp"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique audit log identifier"
+      },
+      "userId": {
+        "bsonType": "objectId",
+        "description": "User ID who performed the action"
+      },
+      "username": {
+        "bsonType": "string",
+        "description": "Username for quick reference",
+        "maxLength": 100
+      },
+      "action": {
+        "bsonType": "string",
+        "description": "Action performed",
+        "enum": [
+          "USER_LOGGED_IN",
+          "USER_LOGGED_OUT",
+          "USER_CREATED",
+          "USER_UPDATED",
+          "USER_DELETED",
+          "FILE_UPLOADED",
+          "RUNBOOK_DELETED",
+          "REPORT_GENERATED",
+          "INCIDENT_CREATED",
+          "INCIDENT_UPDATED",
+          "INCIDENT_DELETED",
+          "COMMAND_EXECUTED",
+          "SETTINGS_UPDATED",
+          "ROLE_ASSIGNED",
+          "ROLE_REVOKED",
+          "APPROVAL_GRANTED",
+          "APPROVAL_DENIED"
+        ]
+      },
+      "entityType": {
+        "bsonType": "string",
+        "description": "Type of entity affected",
+        "enum": [
+          "USER",
+          "RUNBOOK",
+          "INCIDENT",
+          "REPORT",
+          "COMMAND",
+          "ROLE",
+          "SETTING"
+        ]
+      },
+      "entityId": {
+        "bsonType": "objectId",
+        "description": "ID of entity affected"
+      },
+      "entityName": {
+        "bsonType": "string",
+        "description": "Name of entity for quick reference",
+        "maxLength": 200
+      },
+      "description": {
+        "bsonType": "string",
+        "description": "Human-readable description of the action",
+        "maxLength": 1000
+      },
+      "ipAddress": {
+        "bsonType": "string",
+        "description": "Client IP address",
+        "maxLength": 50
+      },
+      "userAgent": {
+        "bsonType": "string",
+        "description": "Client user agent",
+        "maxLength": 500
+      },
+      "requestMethod": {
+        "bsonType": "string",
+        "description": "HTTP method",
+        "enum": [
+          "GET",
+          "POST",
+          "PUT",
+          "PATCH",
+          "DELETE"
+        ]
+      },
+      "requestPath": {
+        "bsonType": "string",
+        "description": "Request path",
+        "maxLength": 500
+      },
+      "changes": {
+        "bsonType": "object",
+        "description": "Before/after changes for update actions",
+        "properties": {
+          "before": {
+            "bsonType": "object",
+            "description": "State before change"
+          },
+          "after": {
+            "bsonType": "object",
+            "description": "State after change"
+          }
+        }
+      },
+      "result": {
+        "bsonType": "string",
+        "description": "Action result",
+        "enum": [
+          "SUCCESS",
+          "FAILURE",
+          "PARTIAL"
+        ]
+      },
+      "errorMessage": {
+        "bsonType": "string",
+        "description": "Error message if failed",
+        "maxLength": 2000
+      },
+      "timestamp": {
+        "bsonType": "date",
+        "description": "Event timestamp"
+      },
+      "sessionId": {
+        "bsonType": "objectId",
+        "description": "Session ID"
+      },
+      "correlationId": {
+        "bsonType": "string",
+        "description": "Request correlation ID",
+        "maxLength": 100
+      }
+    }
+  }
+}

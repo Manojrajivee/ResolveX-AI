@@ -1,0 +1,90 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "Sessions",
+    "description": "Active user session management",
+    "required": [
+      "userId",
+      "sessionToken",
+      "expiresAt"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique session identifier"
+      },
+      "userId": {
+        "bsonType": "objectId",
+        "description": "User ID who owns the session"
+      },
+      "sessionToken": {
+        "bsonType": "string",
+        "description": "Session token string"
+      },
+      "expiresAt": {
+        "bsonType": "date",
+        "description": "Session expiration timestamp"
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Session creation timestamp"
+      },
+      "lastActivityAt": {
+        "bsonType": "date",
+        "description": "Last activity timestamp"
+      },
+      "isActive": {
+        "bsonType": "bool",
+        "description": "Whether session is active"
+      },
+      "deviceInfo": {
+        "bsonType": "object",
+        "description": "Device information",
+        "properties": {
+          "userAgent": {
+            "bsonType": "string",
+            "description": "User agent string"
+          },
+          "ipAddress": {
+            "bsonType": "string",
+            "description": "IP address"
+          },
+          "deviceType": {
+            "bsonType": "string",
+            "description": "Device type (mobile, desktop, tablet)"
+          },
+          "browser": {
+            "bsonType": "string",
+            "description": "Browser name"
+          },
+          "os": {
+            "bsonType": "string",
+            "description": "Operating system"
+          }
+        }
+      },
+      "location": {
+        "bsonType": "object",
+        "description": "Geographic location",
+        "properties": {
+          "country": {
+            "bsonType": "string",
+            "description": "Country code"
+          },
+          "city": {
+            "bsonType": "string",
+            "description": "City name"
+          },
+          "latitude": {
+            "bsonType": "double",
+            "description": "Latitude"
+          },
+          "longitude": {
+            "bsonType": "double",
+            "description": "Longitude"
+          }
+        }
+      }
+    }
+  }
+}

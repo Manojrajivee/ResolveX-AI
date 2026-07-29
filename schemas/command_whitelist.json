@@ -1,0 +1,97 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "CommandWhitelist",
+    "description": "Safe command whitelist for security",
+    "required": [
+      "command",
+      "category",
+      "isAllowed"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique command identifier"
+      },
+      "command": {
+        "bsonType": "string",
+        "description": "Command pattern or exact command",
+        "minLength": 1,
+        "maxLength": 500
+      },
+      "category": {
+        "bsonType": "string",
+        "description": "Command category",
+        "enum": [
+          "SYSTEM_INFO",
+          "FILE_OPS",
+          "NETWORK",
+          "PROCESS",
+          "DATABASE",
+          "CUSTOM"
+        ]
+      },
+      "isAllowed": {
+        "bsonType": "bool",
+        "description": "Whether command is allowed"
+      },
+      "description": {
+        "bsonType": "string",
+        "description": "Command description",
+        "maxLength": 500
+      },
+      "riskLevel": {
+        "bsonType": "string",
+        "description": "Command risk level",
+        "enum": [
+          "LOW",
+          "MEDIUM",
+          "HIGH",
+          "CRITICAL"
+        ]
+      },
+      "requiresApproval": {
+        "bsonType": "bool",
+        "description": "Whether command requires approval"
+      },
+      "pattern": {
+        "bsonType": "string",
+        "description": "Regex pattern for command matching",
+        "maxLength": 500
+      },
+      "examples": {
+        "bsonType": "array",
+        "description": "Example commands",
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "allowedUsers": {
+        "bsonType": "array",
+        "description": "User IDs allowed to execute (empty means all)",
+        "items": {
+          "bsonType": "objectId"
+        }
+      },
+      "allowedRoles": {
+        "bsonType": "array",
+        "description": "Roles allowed to execute (empty means all)",
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "createdBy": {
+        "bsonType": "objectId",
+        "description": "User ID who added this rule"
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Rule creation timestamp"
+      },
+      "updatedAt": {
+        "bsonType": "date",
+        "description": "Last update timestamp"
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "Chats",
+    "description": "AI conversation history for incidents",
+    "required": [
+      "incidentId",
+      "role",
+      "content",
+      "timestamp"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique chat message identifier"
+      },
+      "incidentId": {
+        "bsonType": "objectId",
+        "description": "Associated incident ID"
+      },
+      "role": {
+        "bsonType": "string",
+        "description": "Message sender role",
+        "enum": [
+          "USER",
+          "AI",
+          "SYSTEM"
+        ]
+      },
+      "content": {
+        "bsonType": "string",
+        "description": "Message content",
+        "minLength": 1,
+        "maxLength": 10000
+      },
+      "timestamp": {
+        "bsonType": "date",
+        "description": "Message timestamp"
+      },
+      "metadata": {
+        "bsonType": "object",
+        "description": "Additional message metadata",
+        "properties": {
+          "agentType": {
+            "bsonType": "string",
+            "description": "AI agent type (Planner, Executor, Reporter)"
+          },
+          "stepReference": {
+            "bsonType": "objectId",
+            "description": "Reference to incident step"
+          },
+          "tokenCount": {
+            "bsonType": "int",
+            "description": "Token count for AI messages"
+          }
+        }
+      },
+      "isSystemMessage": {
+        "bsonType": "bool",
+        "description": "Whether this is a system message"
+      }
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "LLMConfigurations",
+    "description": "Stores LLM model configurations",
+    "required": [
+      "name",
+      "modelName",
+      "provider",
+      "temperature",
+      "maxTokens"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique configuration identifier"
+      },
+      "name": {
+        "bsonType": "string",
+        "description": "Configuration name",
+        "minLength": 1,
+        "maxLength": 100
+      },
+      "modelName": {
+        "bsonType": "string",
+        "description": "Model name (e.g., gpt-4, claude-3)",
+        "minLength": 1,
+        "maxLength": 100
+      },
+      "provider": {
+        "bsonType": "string",
+        "description": "LLM provider",
+        "enum": [
+          "OPENAI",
+          "ANTHROPIC",
+          "AZURE",
+          "HUGGINGFACE",
+          "LOCAL"
+        ]
+      },
+      "temperature": {
+        "bsonType": "double",
+        "description": "Temperature for generation (0.0 to 2.0)",
+        "minimum": 0,
+        "maximum": 2
+      },
+      "maxTokens": {
+        "bsonType": "int",
+        "description": "Maximum tokens for generation",
+        "minimum": 1,
+        "maximum": 128000
+      },
+      "topP": {
+        "bsonType": "double",
+        "description": "Top P sampling (0.0 to 1.0)",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "frequencyPenalty": {
+        "bsonType": "double",
+        "description": "Frequency penalty (-2.0 to 2.0)",
+        "minimum": -2,
+        "maximum": 2
+      },
+      "presencePenalty": {
+        "bsonType": "double",
+        "description": "Presence penalty (-2.0 to 2.0)",
+        "minimum": -2,
+        "maximum": 2
+      },
+      "agentType": {
+        "bsonType": "string",
+        "description": "Agent type this config is for",
+        "enum": [
+          "PLANNER",
+          "EXECUTOR",
+          "REPORTER",
+          "GENERAL"
+        ]
+      },
+      "isActive": {
+        "bsonType": "bool",
+        "description": "Whether configuration is active"
+      },
+      "isDefault": {
+        "bsonType": "bool",
+        "description": "Whether this is the default configuration"
+      },
+      "apiEndpoint": {
+        "bsonType": "string",
+        "description": "Custom API endpoint URL",
+        "maxLength": 500
+      },
+      "metadata": {
+        "bsonType": "object",
+        "description": "Additional configuration metadata",
+        "properties": {
+          "costPer1kTokens": {
+            "bsonType": "double",
+            "description": "Cost per 1k tokens"
+          },
+          "contextWindow": {
+            "bsonType": "int",
+            "description": "Context window size"
+          },
+          "supportsFunctionCalling": {
+            "bsonType": "bool",
+            "description": "Whether model supports function calling"
+          }
+        }
+      },
+      "createdBy": {
+        "bsonType": "objectId",
+        "description": "User ID who created configuration"
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Configuration creation timestamp"
+      },
+      "updatedAt": {
+        "bsonType": "date",
+        "description": "Last update timestamp"
+      }
+    }
+  }
+}

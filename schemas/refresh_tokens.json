@@ -1,0 +1,64 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "RefreshTokens",
+    "description": "JWT refresh token management",
+    "required": [
+      "userId",
+      "token",
+      "expiresAt"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique refresh token identifier"
+      },
+      "userId": {
+        "bsonType": "objectId",
+        "description": "User ID who owns the token"
+      },
+      "token": {
+        "bsonType": "string",
+        "description": "Refresh token string"
+      },
+      "expiresAt": {
+        "bsonType": "date",
+        "description": "Token expiration timestamp"
+      },
+      "issuedAt": {
+        "bsonType": "date",
+        "description": "Token issuance timestamp"
+      },
+      "revoked": {
+        "bsonType": "bool",
+        "description": "Whether token is revoked"
+      },
+      "revokedAt": {
+        "bsonType": "date",
+        "description": "Token revocation timestamp"
+      },
+      "deviceInfo": {
+        "bsonType": "object",
+        "description": "Device information",
+        "properties": {
+          "userAgent": {
+            "bsonType": "string",
+            "description": "User agent string"
+          },
+          "ipAddress": {
+            "bsonType": "string",
+            "description": "IP address"
+          },
+          "deviceType": {
+            "bsonType": "string",
+            "description": "Device type (mobile, desktop, tablet)"
+          }
+        }
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Token creation timestamp"
+      }
+    }
+  }
+}

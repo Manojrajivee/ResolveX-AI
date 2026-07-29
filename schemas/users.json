@@ -1,0 +1,76 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "Users",
+    "description": "User authentication and profile management",
+    "required": [
+      "username",
+      "email",
+      "passwordHash",
+      "role",
+      "status"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique user identifier"
+      },
+      "username": {
+        "bsonType": "string",
+        "description": "Unique username",
+        "minLength": 3,
+        "maxLength": 50,
+        "pattern": "^[a-zA-Z0-9_]+$"
+      },
+      "email": {
+        "bsonType": "string",
+        "description": "User email address",
+        "pattern": "^[\\w\\.\\-]+@([\\w\\.\\-]+\\.)+[\\w\\.\\-]{2,4}$"
+      },
+      "passwordHash": {
+        "bsonType": "string",
+        "description": "BCrypt hashed password"
+      },
+      "firstName": {
+        "bsonType": "string",
+        "description": "User's first name",
+        "maxLength": 100
+      },
+      "lastName": {
+        "bsonType": "string",
+        "description": "User's last name",
+        "maxLength": 100
+      },
+      "role": {
+        "bsonType": "string",
+        "description": "User role",
+        "enum": [
+          "ADMIN",
+          "ENGINEER",
+          "VIEWER"
+        ]
+      },
+      "status": {
+        "bsonType": "string",
+        "description": "User account status",
+        "enum": [
+          "ACTIVE",
+          "INACTIVE",
+          "SUSPENDED"
+        ]
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Account creation timestamp"
+      },
+      "updatedAt": {
+        "bsonType": "date",
+        "description": "Last update timestamp"
+      },
+      "lastLoginAt": {
+        "bsonType": "date",
+        "description": "Last login timestamp"
+      }
+    }
+  }
+}

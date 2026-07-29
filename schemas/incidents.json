@@ -1,0 +1,96 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "Incidents",
+    "description": "Main project entity for incident management",
+    "required": [
+      "incidentNumber",
+      "title",
+      "status",
+      "priority",
+      "createdBy"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique incident identifier"
+      },
+      "incidentNumber": {
+        "bsonType": "string",
+        "description": "Unique incident number (e.g., INC-10001)",
+        "pattern": "^INC-\\d+$"
+      },
+      "title": {
+        "bsonType": "string",
+        "description": "Incident title",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "description": {
+        "bsonType": "string",
+        "description": "Detailed incident description",
+        "maxLength": 5000
+      },
+      "status": {
+        "bsonType": "string",
+        "description": "Incident status",
+        "enum": [
+          "OPEN",
+          "IN_PROGRESS",
+          "RESOLVED",
+          "CLOSED"
+        ]
+      },
+      "priority": {
+        "bsonType": "string",
+        "description": "Incident priority",
+        "enum": [
+          "LOW",
+          "MEDIUM",
+          "HIGH",
+          "CRITICAL"
+        ]
+      },
+      "assignedTo": {
+        "bsonType": "objectId",
+        "description": "User ID assigned to incident"
+      },
+      "runbookId": {
+        "bsonType": "objectId",
+        "description": "Associated runbook ID"
+      },
+      "createdBy": {
+        "bsonType": "objectId",
+        "description": "User ID who created incident"
+      },
+      "resolvedAt": {
+        "bsonType": "date",
+        "description": "Resolution timestamp"
+      },
+      "closedAt": {
+        "bsonType": "date",
+        "description": "Closure timestamp"
+      },
+      "resolutionSummary": {
+        "bsonType": "string",
+        "description": "Summary of resolution",
+        "maxLength": 2000
+      },
+      "tags": {
+        "bsonType": "array",
+        "description": "Incident tags",
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Incident creation timestamp"
+      },
+      "updatedAt": {
+        "bsonType": "date",
+        "description": "Last update timestamp"
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+# Node
+node_modules/
+
+# Environment
+.env
+.env.*
+
+# Logs
+*.log
+seed-log.txt
+npm-debug.log*
+
+# MongoDB Database Files
+data/
+journal/
+WiredTiger
+WiredTiger.*
+mongod.lock
+storage.bson
+
+# OS Files
+Thumbs.db
+.DS_Store
+
+# VS Code
+.vscode/

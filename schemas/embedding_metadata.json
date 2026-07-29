@@ -1,0 +1,55 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "EmbeddingMetadata",
+    "description": "Stores chunk ID, vector ID, and ChromaDB reference",
+    "required": [
+      "chunkId",
+      "vectorId",
+      "vectorStore"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique embedding metadata identifier"
+      },
+      "chunkId": {
+        "bsonType": "objectId",
+        "description": "Reference to runbook chunk"
+      },
+      "runbookId": {
+        "bsonType": "objectId",
+        "description": "Reference to runbook"
+      },
+      "vectorId": {
+        "bsonType": "string",
+        "description": "Vector ID in ChromaDB"
+      },
+      "vectorStore": {
+        "bsonType": "string",
+        "description": "Vector store name (e.g., ChromaDB)"
+      },
+      "collectionName": {
+        "bsonType": "string",
+        "description": "ChromaDB collection name"
+      },
+      "embeddingModel": {
+        "bsonType": "string",
+        "description": "Embedding model used",
+        "maxLength": 100
+      },
+      "dimensions": {
+        "bsonType": "int",
+        "description": "Vector dimensions"
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Embedding creation timestamp"
+      },
+      "updatedAt": {
+        "bsonType": "date",
+        "description": "Last update timestamp"
+      }
+    }
+  }
+}

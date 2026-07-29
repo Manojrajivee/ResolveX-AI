@@ -1,0 +1,92 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "Runbooks",
+    "description": "Store uploaded runbook details",
+    "required": [
+      "title",
+      "fileName",
+      "fileType",
+      "uploadedBy",
+      "status"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique runbook identifier"
+      },
+      "title": {
+        "bsonType": "string",
+        "description": "Runbook title",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "fileName": {
+        "bsonType": "string",
+        "description": "Original file name",
+        "maxLength": 255
+      },
+      "fileType": {
+        "bsonType": "string",
+        "description": "File type (PDF, MD, TXT)",
+        "enum": [
+          "PDF",
+          "MD",
+          "TXT",
+          "DOCX"
+        ]
+      },
+      "filePath": {
+        "bsonType": "string",
+        "description": "Storage file path"
+      },
+      "fileSize": {
+        "bsonType": "long",
+        "description": "File size in bytes"
+      },
+      "description": {
+        "bsonType": "string",
+        "description": "Runbook description",
+        "maxLength": 2000
+      },
+      "category": {
+        "bsonType": "string",
+        "description": "Runbook category",
+        "maxLength": 100
+      },
+      "tags": {
+        "bsonType": "array",
+        "description": "Runbook tags",
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "uploadedBy": {
+        "bsonType": "objectId",
+        "description": "User ID who uploaded"
+      },
+      "status": {
+        "bsonType": "string",
+        "description": "Processing status",
+        "enum": [
+          "UPLOADING",
+          "PROCESSING",
+          "READY",
+          "ERROR"
+        ]
+      },
+      "currentVersion": {
+        "bsonType": "int",
+        "description": "Current version number"
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Upload timestamp"
+      },
+      "updatedAt": {
+        "bsonType": "date",
+        "description": "Last update timestamp"
+      }
+    }
+  }
+}

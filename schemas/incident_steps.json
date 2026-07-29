@@ -1,0 +1,87 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "IncidentSteps",
+    "description": "Stores AI plan steps for incident resolution",
+    "required": [
+      "incidentId",
+      "stepNumber",
+      "description",
+      "status"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique step identifier"
+      },
+      "incidentId": {
+        "bsonType": "objectId",
+        "description": "Parent incident ID"
+      },
+      "stepNumber": {
+        "bsonType": "int",
+        "description": "Step sequence number"
+      },
+      "description": {
+        "bsonType": "string",
+        "description": "Step description",
+        "minLength": 1,
+        "maxLength": 1000
+      },
+      "command": {
+        "bsonType": "string",
+        "description": "Command to execute (if applicable)",
+        "maxLength": 500
+      },
+      "expectedOutput": {
+        "bsonType": "string",
+        "description": "Expected output description",
+        "maxLength": 1000
+      },
+      "status": {
+        "bsonType": "string",
+        "description": "Step execution status",
+        "enum": [
+          "PENDING",
+          "IN_PROGRESS",
+          "COMPLETED",
+          "FAILED",
+          "SKIPPED"
+        ]
+      },
+      "requiresApproval": {
+        "bsonType": "bool",
+        "description": "Whether step requires user approval"
+      },
+      "approvedBy": {
+        "bsonType": "objectId",
+        "description": "User ID who approved (if applicable)"
+      },
+      "approvedAt": {
+        "bsonType": "date",
+        "description": "Approval timestamp"
+      },
+      "startedAt": {
+        "bsonType": "date",
+        "description": "Step execution start timestamp"
+      },
+      "completedAt": {
+        "bsonType": "date",
+        "description": "Step completion timestamp"
+      },
+      "notes": {
+        "bsonType": "string",
+        "description": "Additional notes about the step",
+        "maxLength": 2000
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Step creation timestamp"
+      },
+      "updatedAt": {
+        "bsonType": "date",
+        "description": "Last update timestamp"
+      }
+    }
+  }
+}

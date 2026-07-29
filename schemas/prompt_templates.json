@@ -1,0 +1,74 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "PromptTemplates",
+    "description": "Stores AI agent prompt templates",
+    "required": [
+      "name",
+      "agentType",
+      "template",
+      "version"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique template identifier"
+      },
+      "name": {
+        "bsonType": "string",
+        "description": "Template name",
+        "minLength": 1,
+        "maxLength": 100
+      },
+      "agentType": {
+        "bsonType": "string",
+        "description": "AI agent type",
+        "enum": [
+          "PLANNER",
+          "EXECUTOR",
+          "REPORTER",
+          "GENERAL"
+        ]
+      },
+      "template": {
+        "bsonType": "string",
+        "description": "Prompt template content",
+        "minLength": 1,
+        "maxLength": 50000
+      },
+      "version": {
+        "bsonType": "string",
+        "description": "Template version",
+        "maxLength": 50
+      },
+      "description": {
+        "bsonType": "string",
+        "description": "Template description",
+        "maxLength": 1000
+      },
+      "variables": {
+        "bsonType": "array",
+        "description": "Template variables",
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "isActive": {
+        "bsonType": "bool",
+        "description": "Whether template is active"
+      },
+      "createdBy": {
+        "bsonType": "objectId",
+        "description": "User ID who created template"
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Template creation timestamp"
+      },
+      "updatedAt": {
+        "bsonType": "date",
+        "description": "Last update timestamp"
+      }
+    }
+  }
+}

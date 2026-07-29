@@ -1,0 +1,104 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "ActivityLogs",
+    "description": "User activity tracking for analytics and monitoring",
+    "required": [
+      "userId",
+      "activityType",
+      "timestamp"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique activity log identifier"
+      },
+      "userId": {
+        "bsonType": "objectId",
+        "description": "User ID who performed the activity"
+      },
+      "username": {
+        "bsonType": "string",
+        "description": "Username for quick reference",
+        "maxLength": 100
+      },
+      "activityType": {
+        "bsonType": "string",
+        "description": "Type of activity",
+        "enum": [
+          "PAGE_VIEW",
+          "RUNBOOK_VIEW",
+          "INCIDENT_VIEW",
+          "SEARCH",
+          "FILTER",
+          "EXPORT",
+          "DOWNLOAD",
+          "CHAT_MESSAGE",
+          "REPORT_VIEW",
+          "DASHBOARD_VIEW"
+        ]
+      },
+      "resourceType": {
+        "bsonType": "string",
+        "description": "Type of resource accessed",
+        "enum": [
+          "RUNBOOK",
+          "INCIDENT",
+          "REPORT",
+          "DASHBOARD",
+          "CHAT"
+        ]
+      },
+      "resourceId": {
+        "bsonType": "objectId",
+        "description": "ID of resource accessed"
+      },
+      "resourceName": {
+        "bsonType": "string",
+        "description": "Name of resource for quick reference",
+        "maxLength": 200
+      },
+      "description": {
+        "bsonType": "string",
+        "description": "Activity description",
+        "maxLength": 500
+      },
+      "metadata": {
+        "bsonType": "object",
+        "description": "Additional activity metadata",
+        "properties": {
+          "duration": {
+            "bsonType": "long",
+            "description": "Duration in milliseconds"
+          },
+          "searchQuery": {
+            "bsonType": "string",
+            "description": "Search query if applicable"
+          },
+          "filterParams": {
+            "bsonType": "object",
+            "description": "Filter parameters"
+          }
+        }
+      },
+      "ipAddress": {
+        "bsonType": "string",
+        "description": "Client IP address",
+        "maxLength": 50
+      },
+      "userAgent": {
+        "bsonType": "string",
+        "description": "Client user agent",
+        "maxLength": 500
+      },
+      "timestamp": {
+        "bsonType": "date",
+        "description": "Activity timestamp"
+      },
+      "sessionId": {
+        "bsonType": "objectId",
+        "description": "Session ID"
+      }
+    }
+  }
+}

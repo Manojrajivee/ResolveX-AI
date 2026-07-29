@@ -1,0 +1,46 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "Roles",
+    "description": "Role-based access control definitions",
+    "required": [
+      "name",
+      "permissions"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique role identifier"
+      },
+      "name": {
+        "bsonType": "string",
+        "description": "Role name",
+        "enum": [
+          "ADMIN",
+          "ENGINEER",
+          "VIEWER"
+        ]
+      },
+      "description": {
+        "bsonType": "string",
+        "description": "Role description",
+        "maxLength": 500
+      },
+      "permissions": {
+        "bsonType": "array",
+        "description": "List of permissions",
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Role creation timestamp"
+      },
+      "updatedAt": {
+        "bsonType": "date",
+        "description": "Last update timestamp"
+      }
+    }
+  }
+}

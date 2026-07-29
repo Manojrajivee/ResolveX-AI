@@ -1,0 +1,67 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "RunbookChunks",
+    "description": "Store extracted text chunks from runbooks",
+    "required": [
+      "runbookId",
+      "versionId",
+      "chunkNumber",
+      "content"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique chunk identifier"
+      },
+      "runbookId": {
+        "bsonType": "objectId",
+        "description": "Parent runbook ID"
+      },
+      "versionId": {
+        "bsonType": "objectId",
+        "description": "Runbook version ID"
+      },
+      "chunkNumber": {
+        "bsonType": "int",
+        "description": "Chunk sequence number"
+      },
+      "content": {
+        "bsonType": "string",
+        "description": "Chunk text content"
+      },
+      "metadata": {
+        "bsonType": "object",
+        "description": "Additional chunk metadata",
+        "properties": {
+          "pageNumber": {
+            "bsonType": "int",
+            "description": "Page number (for PDF)"
+          },
+          "section": {
+            "bsonType": "string",
+            "description": "Section name"
+          },
+          "wordCount": {
+            "bsonType": "int",
+            "description": "Word count in chunk"
+          }
+        }
+      },
+      "embeddingStatus": {
+        "bsonType": "string",
+        "description": "Embedding generation status",
+        "enum": [
+          "PENDING",
+          "PROCESSING",
+          "COMPLETED",
+          "FAILED"
+        ]
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Chunk creation timestamp"
+      }
+    }
+  }
+}
