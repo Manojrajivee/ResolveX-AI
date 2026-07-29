@@ -1,0 +1,1282 @@
+{
+	"info": {
+		"_postman_id": "8b5c92c5-559d-48e0-bb15-0dcf84a32de4",
+		"name": "ResolveX AI - Complete API Suite",
+		"description": "API collection for testing ResolveX AI. Includes Modules 1 to 7.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Module 1 - Authentication",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Manoj\",\n    \"email\": \"manoj@resolvex.ai\",\n    \"password\": \"SecurePass123!\",\n    \"confirmPassword\": \"SecurePass123!\",\n    \"role\": \"ADMIN\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.success && jsonData.data && jsonData.data.token) {",
+									"    pm.environment.set(\"jwt_token\", jsonData.data.token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"manoj@resolvex.ai\",\n    \"password\": \"SecurePass123!\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module 2 - Incident Management",
+			"item": [
+				{
+					"name": "Create Incident",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.success && jsonData.data && jsonData.data.id) {",
+									"    pm.environment.set(\"incident_id\", jsonData.data.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"MySQL database connection refused error on production\",\n    \"description\": \"Applications are failing to connect to port 3306 on the main DB cluster.\",\n    \"category\": \"DATABASE\",\n    \"priority\": \"HIGH\",\n    \"severity\": \"CRITICAL\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/incidents",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"incidents"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module 6 - Analytics & Reports",
+			"item": [
+				{
+					"name": "Get Dashboard Configuration",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Dashboard KPI Summary",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/summary",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"dashboard",
+								"summary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Chart Dataset",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/analytics?chartType=PIE",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"analytics"
+							],
+							"query": [
+								{
+									"key": "chartType",
+									"value": "PIE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Filtered Analytics Metrics",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"category\": \"DATABASE\",\n    \"status\": \"RESOLVED\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/analytics/filter",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"filter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Report Metadata",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.success && jsonData.data && jsonData.data.id) {",
+									"    pm.environment.set(\"report_id\", jsonData.data.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Monthly Incident SLA Compliance Report\",\n    \"type\": \"MONTHLY\",\n    \"format\": \"CSV\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/reports",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download CSV Report File",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/reports/{{report_id}}/export?format=CSV",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"reports",
+								"{{report_id}}",
+								"export"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "CSV"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get AI Analytics Insights",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/insights",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"insights"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module 7 - Admin Panel & System Config",
+			"item": [
+				{
+					"name": "List All Registered Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/admin/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve System Audit Logs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/audit",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"audit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get System Settings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/settings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update System Settings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"applicationName\": \"ResolveX AI Platform\",\n    \"maintenanceMode\": false,\n    \"defaultLanguage\": \"en\",\n    \"defaultTheme\": \"dark\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/settings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate API Key",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/apikeys?name=JenkinsClient",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"apikeys"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "JenkinsClient"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Active API Keys",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/apikeys",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"apikeys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Toggle Feature Flag",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"featureName\": \"AI_CHAT_ASSISTANT\",\n    \"enabled\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/features",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"features"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Database Backup File",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.success && jsonData.data && jsonData.data.id) {",
+									"    pm.environment.set(\"backup_id\", jsonData.data.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/backup",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"backup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download JSON Backup File",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/backup/{{backup_id}}/download",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"backup",
+								"{{backup_id}}",
+								"download"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module 8 - AI Incident Report Generator",
+			"item": [
+				{
+					"name": "Generate Incident Report",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.success && jsonData.data && jsonData.data.id) {",
+									"    pm.environment.set(\"incident_report_id\", jsonData.data.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"incidentId\": \"{{incident_id}}\",\n    \"runbookId\": \"64fae7890b1234567890cdef\",\n    \"commandsExecuted\": [\n        \"systemctl status mysql\",\n        \"tail -n 50 /var/log/mysql/error.log\"\n    ],\n    \"commandOutputs\": [\n        \"mysql.service - MySQL Community Server\\n   Loaded: loaded\\n   Active: inactive (dead)\",\n        \"[ERROR] InnoDB: Attempted to open a previously-opened image file\\n[ERROR] [MY-010119] [Server] Aborting\"\n    ],\n    \"title\": \"Production MySQL Service Refused to Connect\",\n    \"problemStatement\": \"Database connection refused on production port 3306. Applications failing to start.\",\n    \"aiAnalysis\": \"AI analysis shows MySQL aborted due to InnoDB double opening. Recommend checking lock files.\",\n    \"resolutionSteps\": [\n        \"Remove /var/lib/mysql/ibdata1 lock files if stale\",\n        \"Restart mysql service\"\n    ],\n    \"executionTime\": \"15s\",\n    \"status\": \"SUCCESS\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/reports/generate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"reports",
+								"generate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Reports",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/reports",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Report By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/reports/{{incident_report_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"reports",
+								"{{incident_report_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download PDF Report",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/reports/download/{{incident_report_id}}?format=PDF",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"reports",
+								"download",
+								"{{incident_report_id}}"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "PDF"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download Markdown Report",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/reports/download/{{incident_report_id}}?format=MARKDOWN",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"reports",
+								"download",
+								"{{incident_report_id}}"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "MARKDOWN"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download HTML Report",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/reports/download/{{incident_report_id}}?format=HTML",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"reports",
+								"download",
+								"{{incident_report_id}}"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "HTML"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Report",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/reports/{{incident_report_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"reports",
+								"{{incident_report_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module 9 - Dashboard APIs",
+			"item": [
+				{
+					"name": "Get Dashboard Layout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Dashboard Summary",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/summary",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"dashboard",
+								"summary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Dashboard Charts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/charts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"dashboard",
+								"charts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Dashboard Statistics",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/statistics?category=DATABASE",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"dashboard",
+								"statistics"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "DATABASE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Dashboard Recent Reports & Activities",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/recent",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"dashboard",
+								"recent"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module 10 - Notifications & Logging",
+			"item": [
+				{
+					"name": "Get All Logs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/logs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"logs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Log By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/logs/{{log_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"logs",
+								"{{log_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Audit Trail Logs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/audit",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"audit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Notifications History",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/notifications",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Notification Alert",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"engineer@resolvex.ai\",\n    \"type\": \"RUNBOOK_UPLOAD\",\n    \"channel\": \"EMAIL\",\n    \"recipient\": \"engineer@resolvex.ai\",\n    \"message\": \"Nginx restore playbook file nginx_restore.sh uploaded successfully.\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/notifications/send",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"notifications",
+								"send"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "jwt_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "incident_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "report_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "backup_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "log_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
