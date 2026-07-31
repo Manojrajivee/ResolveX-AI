@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { ToastContainer } from '@/components/ui/ToastContainer';
 
 export const metadata: Metadata = {
   title: 'Runbook-Following Agent | Enterprise AI Incident Resolution',
@@ -39,6 +40,7 @@ export default function RootLayout({
         <div className="relative z-10">
           {children}
         </div>
+        <ToastContainer />
       </body>
     </html>
   );
