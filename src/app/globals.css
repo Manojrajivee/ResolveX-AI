@@ -1,29 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 @import "../styles/animations.css";
 
+
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --card-bg: rgba(255, 255, 255, 0.85);
-  --card-border: rgba(226, 232, 240, 0.8);
-  --glass-bg: rgba(255, 255, 255, 0.75);
-  --glass-border: rgba(203, 213, 225, 0.6);
-  --sidebar-bg: rgba(255, 255, 255, 0.9);
-  --navbar-bg: rgba(255, 255, 255, 0.8);
-  --shadow-color: rgba(15, 23, 42, 0.08);
+  --paper: #FAF7F2;
+  --paper-alt: #F2EAE0;
+  --ink: #20303C;
+  --ink-soft: #5C6B76;
+  --line: rgba(32, 48, 60, 0.12);
+  --pearl-blue: #DCE9F2;
+  --pearl-blue-deep: #2E5E7A;
+  --sandal: #E7D3B2;
+  --sandal-deep: #8A6636;
+  --pearl-pink: #F4DCE3;
+  --pearl-pink-deep: #A24F68;
+
+  --background: #FAF7F2;
+  --foreground: #20303C;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --card-border: rgba(32, 48, 60, 0.12);
+  --glass-bg: rgba(250, 247, 242, 0.9);
+  --glass-border: rgba(32, 48, 60, 0.12);
+  --sidebar-bg: rgba(250, 247, 242, 0.95);
+  --navbar-bg: rgba(250, 247, 242, 0.9);
+  --shadow-color: rgba(32, 48, 60, 0.08);
 }
 
 .dark {
-  --background: #020617;
-  --foreground: #f8fafc;
-  --card-bg: rgba(15, 23, 42, 0.75);
-  --card-border: rgba(30, 41, 59, 0.8);
-  --glass-bg: rgba(15, 23, 42, 0.8);
-  --glass-border: rgba(51, 65, 85, 0.5);
-  --sidebar-bg: rgba(2, 6, 23, 0.92);
-  --navbar-bg: rgba(2, 6, 23, 0.8);
+  --background: #0D161F;
+  --foreground: #FAF7F2;
+  --card-bg: rgba(18, 28, 38, 0.85);
+  --card-border: rgba(220, 233, 242, 0.12);
+  --glass-bg: rgba(13, 22, 31, 0.85);
+  --glass-border: rgba(220, 233, 242, 0.15);
+  --sidebar-bg: rgba(13, 22, 31, 0.95);
+  --navbar-bg: rgba(13, 22, 31, 0.9);
   --shadow-color: rgba(0, 0, 0, 0.4);
 }
+
+.font-sora {
+  font-family: 'Sora', sans-serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
 
 html {
   scroll-behavior: smooth;

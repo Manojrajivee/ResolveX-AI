@@ -48,13 +48,13 @@ export const Sidebar: React.FC = () => {
         {/* Header / Brand */}
         <div className="flex h-16 items-center justify-between px-4 border-b border-slate-200/80 dark:border-slate-800/80 shrink-0">
           <Link href="/dashboard" className="flex items-center gap-3 overflow-hidden">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-500 shadow-lg shadow-blue-500/25">
-              <Bot className="h-6 w-6 text-white" />
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#2E5E7A] to-[#8A6636] text-white font-bold font-sora text-sm shadow-md">
+              R×
             </div>
             {!isCollapsed && (
               <div className="flex flex-col">
-                <span className="font-extrabold text-slate-900 dark:text-white tracking-wide text-sm whitespace-nowrap">Runbook Agent</span>
-                <span className="text-[10px] text-blue-600 dark:text-cyan-400 font-mono tracking-wider uppercase font-bold">Enterprise SaaS</span>
+                <span className="font-extrabold text-slate-900 dark:text-white tracking-wide text-sm whitespace-nowrap font-sora">ResolveX AI</span>
+                <span className="text-[10px] text-[#8A6636] dark:text-[#E7D3B2] font-mono tracking-wider uppercase font-bold">Enterprise SOP</span>
               </div>
             )}
           </Link>
