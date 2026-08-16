@@ -2,7 +2,6 @@ import { AnalyticsSummary } from '@/types/analytics';
 
 export const AnalyticsService = {
   async getSummary(): Promise<AnalyticsSummary> {
-    await new Promise((resolve) => setTimeout(resolve, 400));
     return {
       totalRunbooks: 42,
       totalIncidents: 128,

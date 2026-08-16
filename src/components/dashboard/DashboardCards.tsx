@@ -15,7 +15,7 @@ export interface DashboardCardsProps {
   };
 }
 
-export const DashboardCards: React.FC<DashboardCardsProps> = ({
+export const DashboardCards: React.FC<DashboardCardsProps> = React.memo(({
   metrics = {
     totalRunbooks: 42,
     totalIncidents: 128,
@@ -114,4 +114,7 @@ export const DashboardCards: React.FC<DashboardCardsProps> = ({
       })}
     </div>
   );
-};
+});
+
+DashboardCards.displayName = 'DashboardCards';
+

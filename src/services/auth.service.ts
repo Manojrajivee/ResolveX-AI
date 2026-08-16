@@ -2,8 +2,6 @@ import { LoginCredentials, RegisterCredentials, AuthResponse } from '@/types/aut
 
 export const AuthService = {
   async login(credentials: LoginCredentials): Promise<AuthResponse> {
-    // Mock authentication delay
-    await new Promise((resolve) => setTimeout(resolve, 800));
     return {
       token: 'mock_jwt_token_alex_mercer_2026',
       user: {
@@ -17,7 +15,6 @@ export const AuthService = {
   },
 
   async register(credentials: RegisterCredentials): Promise<AuthResponse> {
-    await new Promise((resolve) => setTimeout(resolve, 800));
     return {
       token: 'mock_jwt_token_new_user_2026',
       user: {
@@ -30,7 +27,6 @@ export const AuthService = {
   },
 
   async forgotPassword(email: string): Promise<{ success: boolean; message: string }> {
-    await new Promise((resolve) => setTimeout(resolve, 600));
     return {
       success: true,
       message: `Password reset instructions sent to ${email}`,

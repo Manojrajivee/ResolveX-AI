@@ -47,12 +47,10 @@ export const MOCK_REPORTS: IncidentReport[] = [
 
 export const ReportService = {
   async getReports(): Promise<IncidentReport[]> {
-    await new Promise((resolve) => setTimeout(resolve, 400));
     return MOCK_REPORTS;
   },
 
   async getReportById(id: string): Promise<IncidentReport | undefined> {
-    await new Promise((resolve) => setTimeout(resolve, 300));
     return MOCK_REPORTS.find((r) => r.id === id);
   },
 };

@@ -6,7 +6,7 @@ export interface PageHeaderProps {
   action?: React.ReactNode;
 }
 
-export const PageHeader: React.FC<PageHeaderProps> = ({ title, description, action }) => {
+export const PageHeader: React.FC<PageHeaderProps> = React.memo(({ title, description, action }) => {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-6 border-b border-slate-200/80 dark:border-slate-800/80">
       <div>
@@ -16,4 +16,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({ title, description, acti
       {action && <div className="shrink-0">{action}</div>}
     </div>
   );
-};
+});
+
+PageHeader.displayName = 'PageHeader';
+

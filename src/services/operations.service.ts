@@ -17,11 +17,9 @@ export const MOCK_SERVICES: ServiceHealth[] = [
 
 export const OperationsService = {
   async getAgents(): Promise<AgentStatus[]> {
-    await new Promise((resolve) => setTimeout(resolve, 200));
     return MOCK_AGENTS;
   },
   async getServices(): Promise<ServiceHealth[]> {
-    await new Promise((resolve) => setTimeout(resolve, 200));
     return MOCK_SERVICES;
   },
 };

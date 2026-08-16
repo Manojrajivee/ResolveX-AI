@@ -3,17 +3,14 @@ import { MOCK_RUNBOOKS } from '@/store/runbook-store';
 
 export const RunbookService = {
   async getRunbooks(): Promise<Runbook[]> {
-    await new Promise((resolve) => setTimeout(resolve, 400));
     return MOCK_RUNBOOKS;
   },
 
   async getRunbookById(id: string): Promise<Runbook | undefined> {
-    await new Promise((resolve) => setTimeout(resolve, 300));
     return MOCK_RUNBOOKS.find((r) => r.id === id);
   },
 
   async uploadRunbook(file: File, title: string, category: string): Promise<Runbook> {
-    await new Promise((resolve) => setTimeout(resolve, 1200));
     const extension = file.name.split('.').pop()?.toUpperCase() as 'PDF' | 'MARKDOWN' | 'TXT';
     
     return {
@@ -36,7 +33,7 @@ export const RunbookService = {
   },
 
   async deleteRunbook(id: string): Promise<boolean> {
-    await new Promise((resolve) => setTimeout(resolve, 400));
     return true;
   },
 };
+

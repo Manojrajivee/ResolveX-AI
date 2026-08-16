@@ -60,12 +60,10 @@ export const MOCK_EXECUTION: IncidentExecution = {
 
 export const ExecutionService = {
   async getExecution(incidentId?: string): Promise<IncidentExecution> {
-    await new Promise((resolve) => setTimeout(resolve, 300));
     return MOCK_EXECUTION;
   },
 
   async approveStep(stepNumber: number): Promise<IncidentExecution> {
-    await new Promise((resolve) => setTimeout(resolve, 500));
     const updated = { ...MOCK_EXECUTION };
     updated.steps = updated.steps.map((s) => {
       if (s.stepNumber === stepNumber) {
@@ -91,3 +89,4 @@ export const ExecutionService = {
     return updated;
   },
 };
+

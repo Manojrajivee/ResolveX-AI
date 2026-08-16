@@ -16,7 +16,7 @@ export interface StepItem {
   duration?: string;
 }
 
-export const LiveTimeline: React.FC = () => {
+export const LiveTimeline: React.FC = React.memo(() => {
   const [steps, setSteps] = useState<StepItem[]>([
     {
       id: 1,
@@ -53,7 +53,7 @@ export const LiveTimeline: React.FC = () => {
     },
   ]);
 
-  const handleApproveStep = (stepId: number) => {
+  const handleApproveStep = React.useCallback((stepId: number) => {
     setSteps((prev) =>
       prev.map((s) => {
         if (s.id === stepId) {
@@ -75,10 +75,10 @@ export const LiveTimeline: React.FC = () => {
         return s;
       })
     );
-  };
+  }, []);
 
-  const completedCount = steps.filter((s) => s.status === 'COMPLETED').length;
-  const progressPercent = Math.round((completedCount / steps.length) * 100);
+  const completedCount = React.useMemo(() => steps.filter((s) => s.status === 'COMPLETED').length, [steps]);
+  const progressPercent = React.useMemo(() => Math.round((completedCount / steps.length) * 100), [completedCount, steps.length]);
 
   return (
     <Card className="space-y-6">
@@ -167,4 +167,7 @@ export const LiveTimeline: React.FC = () => {
       </div>
     </Card>
   );
-};
+});
+
+LiveTimeline.displayName = 'LiveTimeline';
+

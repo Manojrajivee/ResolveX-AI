@@ -6,7 +6,7 @@ import { Badge } from '../ui/Badge';
 import { CheckCircle2, ShieldAlert, Terminal, FileText } from 'lucide-react';
 import Link from 'next/link';
 
-export const RecentActivity: React.FC = () => {
+export const RecentActivity: React.FC = React.memo(() => {
   const activities = [
     {
       id: 'act-1',
@@ -81,4 +81,7 @@ export const RecentActivity: React.FC = () => {
       </div>
     </Card>
   );
-};
+});
+
+RecentActivity.displayName = 'RecentActivity';
+
